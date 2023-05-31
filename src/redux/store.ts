@@ -25,7 +25,7 @@ const phoneBookPersistConfig: any = {
   whitelist: ['token'],
 };
 
-export const store: any = configureStore({
+export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     phonebook: persistReducer(phoneBookPersistConfig, contactsSlice),
@@ -38,4 +38,7 @@ export const store: any = configureStore({
       },
     }),
 });
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
 export let persistor = persistStore(store);

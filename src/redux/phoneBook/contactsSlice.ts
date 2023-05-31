@@ -1,48 +1,49 @@
 import { createSlice } from '@reduxjs/toolkit';
 import contactsOperations from './contactsOperations';
+import { ContactsInitialState } from 'components/Interface/Interface';
 
-const initialState = {
+const initialState: ContactsInitialState = {
   item: [],
   filter: '',
   getIsFetchAnswer: false,
 };
-const contactsSlice: any = createSlice({
+const contactsSlice = createSlice({
   name: 'phonebook',
   initialState,
   reducers: {
-    setFilter(state: any, action: any) {
-      state.filter = action.payload;
+    setFilter(state, { payload }): void {
+      state.filter = payload;
     },
   },
   extraReducers: {
-    [contactsOperations.getAllContacts.pending](state: any) {
+    [contactsOperations.getAllContacts.pending](state) {
       state.getIsFetchAnswer = true;
     },
-    [contactsOperations.getAllContacts.fulfilled](state: any, action: any) {
-      state.item = action.payload;
+    [contactsOperations.getAllContacts.fulfilled](state, { payload }) {
+      state.item = payload;
       state.getIsFetchAnswer = false;
     },
-    [contactsOperations.getAllContacts.rejected](state: any) {
+    [contactsOperations.getAllContacts.rejected](state) {
       state.getIsFetchAnswer = false;
     },
     //
-    [contactsOperations.createNewContact.pending](state: any) {
+    [contactsOperations.createNewContact.pending](state) {
       state.getIsFetchAnswer = true;
     },
-    [contactsOperations.createNewContact.fulfilled](state: any, action: any) {
-      state.item = [action.payload, ...state.item];
+    [contactsOperations.createNewContact.fulfilled](state: any, { payload }) {
+      state.item = [payload, ...state.item];
       state.getIsFetchAnswer = false;
     },
-    [contactsOperations.createNewContact.rejected](state: any) {
+    [contactsOperations.createNewContact.rejected](state) {
       state.getIsFetchAnswer = false;
     },
     //
-    [contactsOperations.deleteContact.pending](state: any) {
+    [contactsOperations.deleteContact.pending](state) {
       state.getIsFetchAnswer = true;
     },
-    [contactsOperations.deleteContact.fulfilled](state: any, action: any) {
+    [contactsOperations.deleteContact.fulfilled](state: any, { payload }: any) {
       state.item = state.item.filter(
-        (contact: any) => contact.id !== action.payload.id
+        (contact: any) => contact.id !== payload.id
       );
       state.getIsFetchAnswer = false;
     },

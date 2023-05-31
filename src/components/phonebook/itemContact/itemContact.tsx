@@ -12,6 +12,7 @@ import {
 } from './itemContact.styled';
 
 const ItemContact: React.FC<PropsItemContacts> = ({ name, number, id }) => {
+  console.log(typeof name);
   const { isRefreshing } = useContacts();
   const dispatch = useDispatch();
 

@@ -1,16 +1,18 @@
-import { useSelector } from 'react-redux';
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
+import type { RootState } from 'redux/store';
+
 import {
   selectUser,
   selectIsLoggedIn,
   selectIsRefreshing,
   selectIsToken,
 } from 'redux/auth/authSelectors';
-
+const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const useAuth = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isRefreshing = useSelector(selectIsRefreshing);
-  const user = useSelector(selectUser);
-  const token = useSelector(selectIsToken);
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const isRefreshing = useAppSelector(selectIsRefreshing);
+  const user = useAppSelector(selectUser);
+  const token = useAppSelector(selectIsToken);
 
   return {
     isLoggedIn,

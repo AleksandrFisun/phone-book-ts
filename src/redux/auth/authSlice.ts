@@ -1,68 +1,72 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import authOperations from './authOperations';
+import { AuthInitialState } from 'components/Interface/Interface';
 
-const initialState: any = {
+const initialState: AuthInitialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
   getIsFetchAnswer: false,
 };
-const authSlice: any = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {},
 
   extraReducers: {
-    [authOperations.userRegistration.pending](state: any) {
+    [authOperations.userRegistration.pending](state) {
       state.getIsFetchAnswer = true;
     },
-    [authOperations.userRegistration.fulfilled](state: any, action: any) {
+    [authOperations.userRegistration.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
       state.getIsFetchAnswer = false;
     },
-    [authOperations.userRegistration.rejected](state: any) {
+    [authOperations.userRegistration.rejected](state) {
       state.isLoggedIn = false;
       state.getIsFetchAnswer = false;
     },
     //
-    [authOperations.userLogin.pending](state: any) {
+    [authOperations.userLogin.pending](state) {
       state.getIsFetchAnswer = true;
     },
-    [authOperations.userLogin.fulfilled](state: any, action: any) {
+    [authOperations.userLogin.fulfilled](state, action: any) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
       state.getIsFetchAnswer = false;
     },
-    [authOperations.userLogin.rejected](state: any) {
+    [authOperations.userLogin.rejected](state) {
       state.isLoggedIn = false;
       state.getIsFetchAnswer = false;
     },
     //
-    [authOperations.logout.pending](state: any) {
+    [authOperations.logout.pending](state) {
       state.getIsFetchAnswer = true;
     },
-    [authOperations.logout.fulfilled](state: any) {
+    [authOperations.logout.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
       state.getIsFetchAnswer = false;
     },
-    [authOperations.logout.rejected](state: any) {
+    [authOperations.logout.rejected](state) {
       state.getIsFetchAnswer = false;
     },
     //
-    [authOperations.checkAuth.pending](state: any) {
+    [authOperations.checkAuth.pending](state) {
       state.getIsFetchAnswer = true;
     },
-    [authOperations.checkAuth.fulfilled](state: any, action: any) {
+    [authOperations.checkAuth.fulfilled](
+      state: any,
+      action: PayloadAction<string>
+    ) {
       state.user = action.payload;
       state.isLoggedIn = true;
       state.getIsFetchAnswer = false;
     },
-    [authOperations.checkAuth.rejected](state: any) {
+    [authOperations.checkAuth.rejected](state) {
       state.getIsFetchAnswer = false;
     },
   },

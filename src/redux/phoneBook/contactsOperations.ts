@@ -7,7 +7,6 @@ const getAllContacts: any = createAsyncThunk(
   async (credentials: any, { rejectWithValue }) => {
     try {
       const { data } = await axios.get('/contacts', credentials);
-
       return data;
     } catch (error: any) {
       return rejectWithValue(error.message);
