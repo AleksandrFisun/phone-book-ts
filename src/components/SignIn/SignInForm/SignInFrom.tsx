@@ -9,15 +9,15 @@ const SignInForm: React.FC = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  const onSubmitFormSignIn = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const onSubmitFormSignIn = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(authOperations.userLogin({ email, password }));
     setEmail('');
     setPassword('');
   };
 
-  const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.currentTarget;
+  const changeInput = (e: React.FormEvent<HTMLInputElement>): void => {
+    const { name, value } = e.currentTarget as any;
     switch (name) {
       case 'email':
         setEmail(value);

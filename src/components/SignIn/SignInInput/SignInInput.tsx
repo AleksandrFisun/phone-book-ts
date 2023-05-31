@@ -27,7 +27,7 @@ const SignInInput: React.FC<PropsLogin> = ({
             type="email"
             name="email"
             value={email}
-            onChange={onChangeInput()}
+            onChange={onChangeInput}
             id={contactEmailId}
             placeholder="Email address"
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
@@ -43,7 +43,7 @@ const SignInInput: React.FC<PropsLogin> = ({
             type="password"
             name="password"
             value={password}
-            onChange={onChangeInput()}
+            onChange={onChangeInput}
             id={contactPasswordId}
             placeholder="Password"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"

@@ -1,13 +1,13 @@
 export interface PropsLogin {
   email: string;
   password: string;
-  onChangeInput: Function;
+  onChangeInput: React.ChangeEventHandler<HTMLInputElement>;
 }
 export interface PropsRegister {
   name: string;
   email: string;
   password: string;
-  onChanges: Function;
+  onChanges: React.ChangeEventHandler<HTMLInputElement>;
 }
 export interface PropsItemContacts {
   id: string;

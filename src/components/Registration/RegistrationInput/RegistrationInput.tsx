@@ -29,7 +29,7 @@ const RegistartionInput: React.FC<PropsRegister> = ({
           <Input
             type="text"
             name="name"
-            onChange={onChanges()}
+            onChange={onChanges}
             value={name}
             id={contactNameId}
             placeholder="Name"
@@ -46,7 +46,7 @@ const RegistartionInput: React.FC<PropsRegister> = ({
           <Input
             type="email"
             name="email"
-            onChange={onChanges()}
+            onChange={onChanges}
             value={email}
             id={contactEmailId}
             placeholder="Email address"
@@ -62,7 +62,7 @@ const RegistartionInput: React.FC<PropsRegister> = ({
           <Input
             type="password"
             name="password"
-            onChange={onChanges()}
+            onChange={onChanges}
             value={password}
             id={contactPasswordId}
             placeholder="Password"
