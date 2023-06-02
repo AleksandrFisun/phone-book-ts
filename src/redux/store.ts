@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './auth/authSlice';
 import contactsSlice from './phoneBook/contactsSlice';
+import chatSlice from './chat/chatSlice';
 
 import {
   persistStore,
@@ -25,10 +26,17 @@ const phoneBookPersistConfig: any = {
   whitelist: ['token'],
 };
 
+const chatPersistConfig: any = {
+  key: 'chat',
+  storage,
+  blacklist: ['isModal', 'fullScreen', 'writingMessage'],
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     phonebook: persistReducer(phoneBookPersistConfig, contactsSlice),
+    chat: persistReducer(chatPersistConfig, chatSlice),
   },
 
   middleware: getDefaultMiddleware =>

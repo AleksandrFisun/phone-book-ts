@@ -3,10 +3,11 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { ToastContainer } from 'react-toastify';
-import { useAuth } from 'hooks';
+import { useAuth, useChat } from 'hooks';
 import RestrictedRout from 'components/Route/RestrictedRout';
 import PrivateRoute from 'components/Route/PrivateRoute';
 import authOperations from 'redux/auth/authOperations';
+import Chat from 'components/Chat/ChatModal';
 import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = lazy(() => import('Pages/HomePage'));
@@ -17,7 +18,8 @@ const NotFoundPage = lazy(() => import('Pages/NotFoundPage'));
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+  const { isRefreshing, isLoggedIn } = useAuth();
+  const { modalState } = useChat();
 
   useEffect(() => {
     dispatch(authOperations.checkAuth());
@@ -30,6 +32,7 @@ export const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<SharedLayout />}>
               <Route index element={<HomePage />} />
+
               <Route
                 path="sign-in"
                 element={
@@ -39,6 +42,7 @@ export const App: React.FC = () => {
                   />
                 }
               />
+
               <Route
                 path="registration"
                 element={
@@ -72,6 +76,7 @@ export const App: React.FC = () => {
             pauseOnHover
             theme="dark"
           />
+          {modalState && isLoggedIn && <Chat />}
         </>
       )}
     </>

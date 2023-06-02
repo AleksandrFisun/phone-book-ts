@@ -33,5 +33,9 @@ export interface ContactsInitialState {
   filter: string;
   getIsFetchAnswer: boolean;
 }
-
+export interface ChatInitialState {
+  isModal: boolean;
+  fullScreen: boolean;
+  writingMessage: boolean;
+}
 // import { PropsLogin } from 'components/Interface/Interface';

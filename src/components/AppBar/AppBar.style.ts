@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 export const Searchbar = styled.header`
   top: 0;
   left: 0;
-  z-index: 1000;
   position: sticky;
   display: flex;
   justify-content: center;
