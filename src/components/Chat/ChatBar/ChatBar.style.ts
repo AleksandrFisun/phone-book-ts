@@ -5,7 +5,7 @@ export const NavigateChat = styled.nav`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 120px;
+  width: 100px;
   border-right: 1px solid #d0d1d9;
   background-color: #ebecf5;
   padding: 10px 0;
@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
 `;
 export const List = styled.ul`
   margin: 0;
-  padding: 0;
+  padding: 0 10px;
 `;
 export const ItemTop = styled.li`
   margin-bottom: 10px;

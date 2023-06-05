@@ -13,6 +13,19 @@ import {
   NewMessageButton,
   NewMessageButtonIcon,
   NewMessageButtonText,
+  NewMessageHeadWrapp,
+  NewMessageHeadLabel,
+  NewMessageForm,
+  NewMessageBodyForm,
+  NewMessageHeadButton,
+  NewMessageBodyText,
+  NewMessageFooterForm,
+  NewMessageFooterWrapperInput,
+  NewMessageFooterLabel,
+  NewMessageFooterInput,
+  NewMessageFooterInputCode,
+  NewMessageFooterContainInput,
+  NewMessageFooterButton,
 } from './Writing.style';
 
 const Writing = () => {
@@ -23,7 +36,7 @@ const Writing = () => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper props={!onWritingMessage}>
         {!onWritingMessage && (
           <NewMessageWrapper>
             <NewMessageIcon>
@@ -47,27 +60,44 @@ const Writing = () => {
           </NewMessageWrapper>
         )}
         {onWritingMessage && (
-          <form action="">
-            <div>
-              <div>
-                <label htmlFor={writingInputMessageId}>
+          <NewMessageForm action="">
+            <NewMessageBodyForm>
+              <NewMessageHeadWrapp>
+                <NewMessageHeadLabel htmlFor={writingInputMessageId}>
                   Поставте запитання експерту системи
-                </label>
-                <button
+                </NewMessageHeadLabel>
+                <NewMessageHeadButton
                   type="button"
                   onClick={() => dispatch(writingMissage())}
                 >
                   Скасувати
-                </button>
-              </div>
-              <input type="text" id={writingInputMessageId} />
-            </div>
-            <div>
-              <label htmlFor={writingInputNumberId}></label>
-              <input type="phone" id={writingInputNumberId} />
-              <button type="submit">Надіслати</button>
-            </div>
-          </form>
+                </NewMessageHeadButton>
+              </NewMessageHeadWrapp>
+              <NewMessageBodyText
+                placeholder="Ведiть текст"
+                id={writingInputMessageId}
+              />
+            </NewMessageBodyForm>
+            <NewMessageFooterForm>
+              <NewMessageFooterWrapperInput>
+                <NewMessageFooterLabel htmlFor={writingInputNumberId}>
+                  Телефон
+                </NewMessageFooterLabel>
+                <NewMessageFooterContainInput>
+                  <NewMessageFooterInput
+                    type="tel"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    required
+                    id={writingInputNumberId}
+                  />
+                  <NewMessageFooterInputCode>+380</NewMessageFooterInputCode>
+                </NewMessageFooterContainInput>
+              </NewMessageFooterWrapperInput>
+              <NewMessageFooterButton type="submit">
+                Надіслати
+              </NewMessageFooterButton>
+            </NewMessageFooterForm>
+          </NewMessageForm>
         )}
       </Wrapper>
     </>
