@@ -15,21 +15,21 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-const authPersistConfig: any = {
+const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
 };
-const phoneBookPersistConfig: any = {
+const phoneBookPersistConfig = {
   key: 'phoneBook',
   storage,
   whitelist: ['token'],
 };
 
-const chatPersistConfig: any = {
+const chatPersistConfig = {
   key: 'chat',
   storage,
-  blacklist: ['isModal', 'fullScreen', 'writingMessage'],
+  blacklist: ['isModal', 'fullScreen', 'writingMessage', 'getIdMessage'],
 };
 
 export const store = configureStore({

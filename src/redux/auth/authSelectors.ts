@@ -1,7 +1,16 @@
-export const selectIsLoggedIn = (state: any) => state.auth.isLoggedIn;
+import {
+  AuthUser,
+  AuthToken,
+  AuthIsLoggedIn,
+  AuthGetIsFetchAnswer,
+} from 'components/Interface/Interface';
 
-export const selectUser = (state: any) => state.auth.user;
+export const selectIsLoggedIn = (state: AuthIsLoggedIn) =>
+  state.auth.isLoggedIn;
 
-export const selectIsRefreshing = (state: any) => state.auth.getIsFetchAnswer;
+export const selectUser = (state: AuthUser) => state.auth.user;
 
-export const selectIsToken = (state: any) => state.auth.token;
+export const selectIsRefreshing = (state: AuthGetIsFetchAnswer) =>
+  state.auth.getIsFetchAnswer;
+
+export const selectIsToken = (state: AuthToken) => state.auth.token;

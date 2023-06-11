@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './authOperations';
 import { AuthInitialState } from 'components/Interface/Interface';
 
@@ -13,62 +13,96 @@ const authSlice = createSlice({
   initialState,
   reducers: {},
 
-  extraReducers: {
-    [authOperations.userRegistration.pending](state) {
-      state.getIsFetchAnswer = true;
-    },
-    [authOperations.userRegistration.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
-      state.getIsFetchAnswer = false;
-    },
-    [authOperations.userRegistration.rejected](state) {
-      state.isLoggedIn = false;
-      state.getIsFetchAnswer = false;
-    },
+  extraReducers: builder => {
+    builder.addCase(
+      authOperations.userRegistration.pending,
+      (state: AuthInitialState) => {
+        state.getIsFetchAnswer = true;
+      }
+    );
+    builder.addCase(
+      authOperations.userRegistration.fulfilled,
+      (state: AuthInitialState, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+        state.getIsFetchAnswer = false;
+      }
+    );
+    builder.addCase(
+      authOperations.userRegistration.rejected,
+      (state: AuthInitialState) => {
+        state.isLoggedIn = false;
+        state.getIsFetchAnswer = false;
+      }
+    );
     //
-    [authOperations.userLogin.pending](state) {
-      state.getIsFetchAnswer = true;
-    },
-    [authOperations.userLogin.fulfilled](state, action: any) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
-      state.getIsFetchAnswer = false;
-    },
-    [authOperations.userLogin.rejected](state) {
-      state.isLoggedIn = false;
-      state.getIsFetchAnswer = false;
-    },
+    builder.addCase(
+      authOperations.userLogin.pending,
+      (state: AuthInitialState) => {
+        state.getIsFetchAnswer = true;
+      }
+    );
+    builder.addCase(
+      authOperations.userLogin.fulfilled,
+      (state: AuthInitialState, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+        state.getIsFetchAnswer = false;
+      }
+    );
+    builder.addCase(
+      authOperations.userLogin.rejected,
+      (state: AuthInitialState) => {
+        state.isLoggedIn = false;
+        state.getIsFetchAnswer = false;
+      }
+    );
     //
-    [authOperations.logout.pending](state) {
-      state.getIsFetchAnswer = true;
-    },
-    [authOperations.logout.fulfilled](state) {
-      state.user = { name: null, email: null };
-      state.token = null;
-      state.isLoggedIn = false;
-      state.getIsFetchAnswer = false;
-    },
-    [authOperations.logout.rejected](state) {
-      state.getIsFetchAnswer = false;
-    },
+
+    builder.addCase(
+      authOperations.logout.pending,
+      (state: AuthInitialState) => {
+        state.getIsFetchAnswer = true;
+      }
+    );
+    builder.addCase(
+      authOperations.logout.fulfilled,
+      (state: AuthInitialState) => {
+        state.user = { name: null, email: null };
+        state.token = null;
+        state.isLoggedIn = false;
+        state.getIsFetchAnswer = false;
+      }
+    );
+    builder.addCase(
+      authOperations.logout.rejected,
+      (state: AuthInitialState) => {
+        state.getIsFetchAnswer = false;
+      }
+    );
     //
-    [authOperations.checkAuth.pending](state) {
-      state.getIsFetchAnswer = true;
-    },
-    [authOperations.checkAuth.fulfilled](
-      state: any,
-      action: PayloadAction<string>
-    ) {
-      state.user = action.payload;
-      state.isLoggedIn = true;
-      state.getIsFetchAnswer = false;
-    },
-    [authOperations.checkAuth.rejected](state) {
-      state.getIsFetchAnswer = false;
-    },
+    builder.addCase(
+      authOperations.checkAuth.pending,
+      (state: AuthInitialState) => {
+        state.getIsFetchAnswer = true;
+      }
+    );
+    builder.addCase(
+      authOperations.checkAuth.fulfilled,
+      (state: AuthInitialState, action) => {
+        state.user = action.payload;
+        state.isLoggedIn = true;
+        state.getIsFetchAnswer = false;
+      }
+    );
+    builder.addCase(
+      authOperations.checkAuth.rejected,
+      (state: AuthInitialState) => {
+        state.getIsFetchAnswer = false;
+      }
+    );
   },
 });
 

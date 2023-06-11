@@ -9,9 +9,9 @@ const token = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
-const userRegistration: any = createAsyncThunk(
+const userRegistration = createAsyncThunk(
   'auth/registration',
-  async (credentials: any, { rejectWithValue }) => {
+  async (credentials: object, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/signup', credentials);
       token.set(data.token);
@@ -21,9 +21,9 @@ const userRegistration: any = createAsyncThunk(
     }
   }
 );
-const userLogin: any = createAsyncThunk(
+const userLogin = createAsyncThunk(
   'auth/login',
-  async (credentials: any, { rejectWithValue }) => {
+  async (credentials: object, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/login', credentials);
       token.set(data.token);
@@ -33,9 +33,9 @@ const userLogin: any = createAsyncThunk(
     }
   }
 );
-const logout: any = createAsyncThunk(
+const logout = createAsyncThunk(
   'auth/logout',
-  async (credentials: any, { rejectWithValue }) => {
+  async (credentials: object, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/logout', credentials);
       token.unset();
@@ -45,9 +45,9 @@ const logout: any = createAsyncThunk(
     }
   }
 );
-const checkAuth: any = createAsyncThunk('auth/refresh', async (_, thunkApi) => {
+const checkAuth = createAsyncThunk('auth/refresh', async (_, thunkApi) => {
   const state: any = thunkApi.getState();
-  const persistedToken: any = state.auth.token;
+  const persistedToken: string = state.auth.token;
   if (persistedToken === null) {
     return thunkApi.rejectWithValue('error');
   }
@@ -63,4 +63,5 @@ const authOperations: any = {
   logout,
   checkAuth,
 };
+
 export default authOperations;

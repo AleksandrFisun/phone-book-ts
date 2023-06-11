@@ -3,6 +3,7 @@ import { Wrapper, List, Text, Item, Button } from './ChatHeadBar.style';
 import { closeModal, onScreen } from 'redux/chat/chatSlice';
 import { RxCross2 } from 'react-icons/rx';
 import { useDispatch } from 'react-redux';
+import chatOperations from 'redux/chat/chatOperations';
 const ChatHeadBar: React.FC<any> = ({ nameChat }) => {
   const dispatch = useDispatch();
   return (
@@ -16,7 +17,7 @@ const ChatHeadBar: React.FC<any> = ({ nameChat }) => {
         </Text>
         <List>
           <Item>
-            <Button>
+            <Button onClick={() => dispatch(chatOperations.getAllMessage())}>
               <BiSearchAlt2 />
             </Button>
           </Item>

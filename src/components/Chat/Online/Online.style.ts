@@ -17,6 +17,7 @@ export const InputFile = styled.input`
 export const Label = styled.label`
   display: flex;
   align-items: center;
+  cursor: pointer;
   & svg {
     width: 30px;
     height: 30px;
@@ -26,6 +27,7 @@ export const Label = styled.label`
 export const Button = styled.button`
   border: none;
   background: none;
+  cursor: pointer;
   & svg {
     width: 30px;
     height: 30px;

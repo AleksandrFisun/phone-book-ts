@@ -4,8 +4,8 @@ export const ModalBасkdrор = styled.div<{ props: boolean }>`
   position: fixed;
   bottom: 0;
   right: 0;
-  width: ${props => (props.props ? '35%' : '100%')};
-  height: ${props => (props.props ? '40%' : '100%')};
+  width: ${props => (props.props ? '320px' : '100%')};
+  height: ${props => (props.props ? '400px' : '100%')};
 `;
 
 export const ModalContent = styled.div`
@@ -24,9 +24,9 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   height: 100%;
 `;
-export const ChatBody = styled.div`
+export const ChatBody = styled.div<{ props: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%;
+  width: ${props => (props.props ? '220px' : '100%')};
 `;

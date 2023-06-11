@@ -14,15 +14,18 @@ import ChatHeadBar from 'components/Chat/ChatHeadBar/ChatHeadBar';
 import { useChat } from 'hooks';
 import TechnicalSupport from 'components/Chat/TechnicalSupport/TechnicalSupport';
 const modalRoot = document.querySelector('#modal-root');
+
 const Chat = () => {
   const [activeButton, setActiveButton] = useState('online');
   const { fullScreen } = useChat();
-  const onButtonName = (e: any) => {
+
+  const onButtonName = (e: React.ChangeEvent<HTMLFormElement>) => {
     const active = e.currentTarget.name;
     if (active) {
       setActiveButton(active);
     }
   };
+
   if (!modalRoot) {
     return modalRoot;
   }
@@ -32,7 +35,7 @@ const Chat = () => {
         <ModalContent>
           <Wrapper>
             <ChatBar onActiveButton={onButtonName} />
-            <ChatBody>
+            <ChatBody props={fullScreen}>
               <ChatHeadBar nameChat={activeButton} />
               {activeButton === 'online' && <Online />}
               {activeButton === 'writing' && <Writing />}
@@ -47,4 +50,3 @@ const Chat = () => {
   );
 };
 export default Chat;
-// портал(createPortal) для модалки вместо z-index
