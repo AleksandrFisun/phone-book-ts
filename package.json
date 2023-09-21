@@ -1,8 +1,8 @@
 {
-  "name": "project9",
+  "name": "phone-book-ts",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://aleksandrfisun.github.io/project9/",
+  "homepage": "https://aleksandrfisun.github.io/phone-book-ts/",
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
