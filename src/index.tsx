@@ -16,7 +16,7 @@ if (rootElement) {
     <React.StrictMode>
       <Provider store={store}>
         <PersistGate loading={<Loader />} persistor={persistor}>
-          <BrowserRouter basename="/phone-book-ts">
+          <BrowserRouter basename="/phone-book-tsgit">
             <App />
           </BrowserRouter>
         </PersistGate>
